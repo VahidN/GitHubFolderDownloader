@@ -1,0 +1,56 @@
+﻿<Window x:Class="GitHubFolderDownloader.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:behaviors="clr-namespace:GitHubFolderDownloader.Behaviors"
+        xmlns:viewModels="clr-namespace:GitHubFolderDownloader.ViewModels"
+        xmlns:views="clr-namespace:GitHubFolderDownloader.Views"
+        Title="GitHub Folder Downloader V1.0"
+        Background="#FF393939" FontFamily="Tahoma"
+        WindowStartupLocation="CenterScreen"
+        Height="542" Width="720">
+    <Window.Resources>
+        <viewModels:MainWindowViewModel x:Key="MainWindowViewModel" />
+    </Window.Resources>
+    <Grid DataContext="{Binding Source={StaticResource MainWindowViewModel}}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <ToolBar Grid.Row="0" TabIndex="1" Margin="5">
+            <Button
+                Command="{Binding StartCommand}"
+                ToolTip="Start">
+                <Image Source="Images/run.png"  />
+            </Button>
+            <Button
+                Command="{Binding StopCommand}"
+                ToolTip="Stop">
+                <Image Source="Images/stop.png"  />
+            </Button>
+            <Separator/>
+        </ToolBar>
+
+        <views:Settings Grid.Row="1"/>
+        <views:Progress Grid.Row="2"/>
+        <GridSplitter
+            Grid.Row="3"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Top"
+            ShowsPreview="true"
+            ResizeDirection="Rows"
+            Panel.ZIndex="1"
+            Height="3" />
+        <GroupBox Grid.Row="3" Margin="7" Header="Logs">
+            <TextBox AcceptsReturn="True"
+                     TextWrapping="Wrap"
+                     behaviors:ScrollToEndBehavior.OnTextChanged="True"
+                     VerticalAlignment="Stretch"
+                     VerticalScrollBarVisibility="Auto"
+                     Text="{Binding GuiModelData.Logs}"
+                     MinHeight="100" MaxHeight="200" Margin="2"/>
+        </GroupBox>
+    </Grid>
+</Window>
