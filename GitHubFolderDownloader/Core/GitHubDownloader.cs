@@ -83,9 +83,9 @@ namespace GitHubFolderDownloader.Core
             }
 
             var url = string.Format("https://api.github.com/repos/{0}/{1}/contents/{2}",
-                Uri.EscapeUriString(_guiModelData.RepositoryOwner),
-                Uri.EscapeUriString(_guiModelData.RepositoryName),
-                Uri.EscapeUriString(repositorySubDir));
+                Uri.EscapeUriString(Uri.UnescapeDataString(_guiModelData.RepositoryOwner)),
+                Uri.EscapeUriString(Uri.UnescapeDataString(_guiModelData.RepositoryName)),
+                Uri.EscapeUriString(Uri.UnescapeDataString(repositorySubDir)));
             return url;
         }
 
