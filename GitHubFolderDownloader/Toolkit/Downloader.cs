@@ -23,7 +23,7 @@ namespace GitHubFolderDownloader.Toolkit
             }
 
             var segments = new Uri(url).Segments;
-            var fileName = segments[segments.Length - 1];
+            var fileName = Uri.UnescapeDataString(segments[segments.Length - 1]);
             var filePath = Path.Combine(outFolder, fileName);
 
             if (File.Exists(filePath))
