@@ -9,19 +9,21 @@ namespace GitHubFolderDownloader.Toolkit
             var networkAvailable = NetworkInterface.GetIsNetworkAvailable();
             if (!networkAvailable) return false;
 
-            var hosts = hostsToPing ?? new[] { "www.google.com" };
+            var hosts = hostsToPing ?? new[] { "http://www.google.com" };
 
-            using (var ping = new Ping())
+            foreach (var host in hosts)
             {
-                foreach (var host in hosts)
+                try
                 {
-                    try
+                    using (var client = new System.Net.WebClient())
+                    using (var stream = client.OpenRead(host))
                     {
-                        var pingReply = ping.Send(host, timeoutPerHostMillis);
-                        if (pingReply != null && pingReply.Status == IPStatus.Success)
-                            return true;
+                        return true;
                     }
-                    catch { }
+                }
+                catch (System.Exception ex)
+                {
+                    int g;
                 }
             }
 
