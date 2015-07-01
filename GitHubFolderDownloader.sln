@@ -19,13 +19,22 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{56EFD0
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitHubFolderDownloader.Tests", "GitHubFolderDownloader.Tests\GitHubFolderDownloader.Tests.csproj", "{411CAEAE-65C2-4C0E-A8B2-7A285AEED5D0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{08CFE7A5-B318-4219-8E6F-6FBBAA682535}.Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{08CFE7A5-B318-4219-8E6F-6FBBAA682535}.Debug|Any CPU.Build.0 = Release|Any CPU
 		{08CFE7A5-B318-4219-8E6F-6FBBAA682535}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{08CFE7A5-B318-4219-8E6F-6FBBAA682535}.Release|Any CPU.Build.0 = Release|Any CPU
+		{411CAEAE-65C2-4C0E-A8B2-7A285AEED5D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{411CAEAE-65C2-4C0E-A8B2-7A285AEED5D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{411CAEAE-65C2-4C0E-A8B2-7A285AEED5D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{411CAEAE-65C2-4C0E-A8B2-7A285AEED5D0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

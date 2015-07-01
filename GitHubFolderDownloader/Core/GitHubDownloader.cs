@@ -66,27 +66,7 @@ namespace GitHubFolderDownloader.Core
 
         private string getApiRootUrl()
         {
-            return getApiUrl(_guiModelData.RepositorySubDir);
-        }
-
-        private string getApiUrl(string repositorySubDir)
-        {
-            /*
-            This API has an upper limit of 1,000 files for a directory.
-            If you need to retrieve more files, use the Git Trees API.
-            This API supports files up to 1 megabyte in size.
-            */
-
-            if (repositorySubDir == null)
-            {
-                repositorySubDir = string.Empty;
-            }
-
-            var url = string.Format("https://api.github.com/repos/{0}/{1}/contents/{2}",
-                Uri.EscapeUriString(_guiModelData.RepositoryOwner),
-                Uri.EscapeUriString(_guiModelData.RepositoryName),
-                Uri.EscapeUriString(repositorySubDir));
-            return url;
+            return new ApiUrl(_guiModelData).GetApiUrl(_guiModelData.RepositorySubDir);
         }
 
         private string getBaseFoler()
@@ -131,7 +111,7 @@ namespace GitHubFolderDownloader.Core
 
         private GitHubEntry[] getGitHubEntries(string repositorySubDir)
         {
-            var url = getApiUrl(repositorySubDir);
+            var url = new ApiUrl(_guiModelData).GetApiUrl(repositorySubDir);
             using (var webClient = new WebClient())
             {
                 webClient.Headers.Add("user-agent", Downloader.UA);

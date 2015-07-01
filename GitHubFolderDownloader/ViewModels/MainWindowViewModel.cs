@@ -92,28 +92,14 @@ namespace GitHubFolderDownloader.ViewModels
             switch (e.PropertyName)
             {
                 case "RepositoryFolderFullUrl":
-                    try
-                    {
-                        var uri = new Uri(GuiModelData.RepositoryFolderFullUrl);
-                        GuiModelData.RepositoryOwner = uri.Segments[1];
-                        GuiModelData.RepositoryName = uri.Segments[2];
-
-                        var segments = new StringBuilder();
-                        foreach (var segment in uri.Segments.Skip(5))
-                        {
-                            segments.Append(segment);
-                        }
-                        GuiModelData.RepositorySubDir = segments.ToString();
-                    }
-                    catch
-                    {
-                        /* doesn't matter */
-                    }
+                    new ApiUrl(GuiModelData).SetApiSegments();
                     break;
             }
         }
+
         private void manageAppExit()
         {
+            if (Application.Current == null) return;
             Application.Current.Exit += currentExit;
             Application.Current.SessionEnding += currentSessionEnding;
         }
