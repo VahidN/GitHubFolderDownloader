@@ -19,6 +19,7 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -110,14 +111,20 @@
                     </Grid>
                 </Grid>
 
-                <TextBlock Text="GitHub's Token:"
+                <TextBlock Text="Branch:"
                            Margin="2" Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" />
+                <ComboBox ItemsSource="{Binding GuiModelData.Branches, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                          SelectedItem="{Binding GuiModelData.SelectedBranch, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                          Margin="2" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center"/>
+
+                <TextBlock Text="GitHub's Token:"
+                           Margin="2" Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" />
                 <TextBox Grid.Column="1"
                          Text="{Binding GuiModelData.GitHubToken, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                         Grid.Row="2" Margin="2" VerticalAlignment="Center"/>
+                         Grid.Row="3" Margin="2" VerticalAlignment="Center"/>
 
                 <TextBlock Foreground="Cyan"
-                           Grid.Row="2" Grid.Column="2"
+                           Grid.Row="3" Grid.Column="2"
                            HorizontalAlignment="Left" Margin="2"
                            behaviors:WebHyperlink.LaunchDefaultBrowser="True" VerticalAlignment="Center">
                     <Hyperlink Foreground="Cyan" NavigateUri="https://github.com/settings/tokens"
@@ -127,12 +134,12 @@
                 </TextBlock>
 
                 <TextBlock Text="Output Path:"
-                           Margin="2" Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" />
+                           Margin="2" Grid.Column="0" Grid.Row="4" VerticalAlignment="Center" />
                 <TextBox Grid.Column="1"
                          Text="{Binding GuiModelData.OutputPath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                         Grid.Row="3" Margin="2" VerticalAlignment="Center"/>
+                         Grid.Row="4" Margin="2" VerticalAlignment="Center"/>
                 <Button Content="..." Margin="2" Padding="2" Grid.Column="2" Width="25"
-                        ToolTip="Browse Folder" Grid.Row="3" HorizontalContentAlignment="Center" HorizontalAlignment="Left" >
+                        ToolTip="Browse Folder" Grid.Row="4" HorizontalContentAlignment="Center" HorizontalAlignment="Left" >
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="Click">
                             <behaviors:FolderBrowserDialogBehavior

@@ -63,7 +63,9 @@
     <Compile Include="Converters\SizeFormatConverter.cs" />
     <Compile Include="Converters\WaterMarkConverter.cs" />
     <Compile Include="Core\ApiUrl.cs" />
+    <Compile Include="Core\GitHubBranchList.cs" />
     <Compile Include="Core\GitHubDownloader.cs" />
+    <Compile Include="Models\GitHubBranch.cs" />
     <Compile Include="Models\GitHubEntry.cs" />
     <Compile Include="Toolkit\AppMessenger.cs" />
     <Compile Include="Toolkit\ConfigSetGet.cs" />

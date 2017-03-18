@@ -1,7 +1,5 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
 using System.Windows;
 using GitHubFolderDownloader.Core;
 using GitHubFolderDownloader.Models;
@@ -93,6 +91,7 @@ namespace GitHubFolderDownloader.ViewModels
             {
                 case "RepositoryFolderFullUrl":
                     new ApiUrl(GuiModelData).SetApiSegments();
+                    new GitHubBranchList(GuiModelData).SetBranchesList();
                     break;
             }
         }

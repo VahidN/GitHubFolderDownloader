@@ -14,7 +14,7 @@ namespace GitHubFolderDownloader.Core
             _guiModelData = guiModelData;
         }
 
-        public string GetApiUrl(string repositorySubDir)
+        public string GetApiUrl(string repositorySubDir, string branch)
         {
             /*
             This API has an upper limit of 1,000 files for a directory.
@@ -27,10 +27,17 @@ namespace GitHubFolderDownloader.Core
                 repositorySubDir = string.Empty;
             }
 
-            var url = string.Format("https://api.github.com/repos/{0}/{1}/contents/{2}",
+            var branchName = string.Empty;
+            if(!string.IsNullOrWhiteSpace(branch))
+            {
+                branchName = string.Format("?ref={0}", branch);
+            }
+
+            var url = string.Format("https://api.github.com/repos/{0}/{1}/contents/{2}{3}",
                 Uri.EscapeUriString(_guiModelData.RepositoryOwner),
                 Uri.EscapeUriString(_guiModelData.RepositoryName),
-                Uri.EscapeUriString(repositorySubDir));
+                Uri.EscapeUriString(repositorySubDir),
+                branchName);
             return url;
         }
 
@@ -55,5 +62,12 @@ namespace GitHubFolderDownloader.Core
             }
         }
 
+        public string GetBranchesApiUrl()
+        {
+            var url = string.Format("https://api.github.com/repos/{0}/{1}/branches",
+                Uri.EscapeUriString(_guiModelData.RepositoryOwner),
+                Uri.EscapeUriString(_guiModelData.RepositoryName));
+            return url;
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 
@@ -14,6 +15,8 @@ namespace GitHubFolderDownloader.Models
         private string _repositoryName;
         private string _repositoryOwner;
         private string _repositorySubDir;
+        private string _selectedBranch = string.Empty;
+        private List<string> _branches = new List<string> { "master" };
 
         public GuiModel()
         {
@@ -102,6 +105,27 @@ namespace GitHubFolderDownloader.Models
                 if (value == null) value = string.Empty;
                 _repositorySubDir = value.Trim('/');
                 notifyPropertyChanged("RepositorySubDir");
+            }
+        }
+
+        public string SelectedBranch
+        {
+            get { return _selectedBranch; }
+            set
+            {
+                if (value == null) value = string.Empty;
+                _selectedBranch = value.Trim('/');
+                notifyPropertyChanged("SelectedBranch");
+            }
+        }
+
+        public List<string> Branches
+        {
+            get { return _branches; }
+            set
+            {
+                _branches = value;
+                notifyPropertyChanged("Branches");
             }
         }
 

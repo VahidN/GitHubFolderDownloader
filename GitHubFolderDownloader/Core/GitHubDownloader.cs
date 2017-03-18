@@ -34,7 +34,7 @@ namespace GitHubFolderDownloader.Core
                     return;
                 }
 
-                var entries = getGitHubEntries(_guiModelData.RepositorySubDir);
+                var entries = getGitHubEntries(_guiModelData.RepositorySubDir, _guiModelData.SelectedBranch);
                 if (!entries.Any())
                 {
                     AppMessenger.Messenger.NotifyColleagues("ShowLog", "The folder is empty.");
@@ -66,7 +66,7 @@ namespace GitHubFolderDownloader.Core
 
         private string getApiRootUrl()
         {
-            return new ApiUrl(_guiModelData).GetApiUrl(_guiModelData.RepositorySubDir);
+            return new ApiUrl(_guiModelData).GetApiUrl(_guiModelData.RepositorySubDir, _guiModelData.SelectedBranch);
         }
 
         private string getBaseFoler()
@@ -109,9 +109,9 @@ namespace GitHubFolderDownloader.Core
             return action;
         }
 
-        private GitHubEntry[] getGitHubEntries(string repositorySubDir)
+        private GitHubEntry[] getGitHubEntries(string repositorySubDir, string branch)
         {
-            var url = new ApiUrl(_guiModelData).GetApiUrl(repositorySubDir);
+            var url = new ApiUrl(_guiModelData).GetApiUrl(repositorySubDir, branch);
             using (var webClient = new WebClient())
             {
                 webClient.Headers.Add("user-agent", Downloader.UA);
@@ -133,7 +133,7 @@ namespace GitHubFolderDownloader.Core
 
                     if (localItem.Type.Equals("dir"))
                     {
-                        var subEntries = getGitHubEntries(localItem.Path);
+                        var subEntries = getGitHubEntries(localItem.Path, _guiModelData.SelectedBranch);
                         if (!subEntries.Any())
                         {
                             continue;

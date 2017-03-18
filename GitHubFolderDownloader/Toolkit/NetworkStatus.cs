@@ -11,7 +11,7 @@ namespace GitHubFolderDownloader.Toolkit
             var networkAvailable = NetworkInterface.GetIsNetworkAvailable();
             if (!networkAvailable) return false;
 
-            var hosts = hostsToPing ?? new[] { "http://www.google.com" };
+            var hosts = hostsToPing ?? new[] { "www.google.com", "http://www.google.com" };
 
             return canPing(timeoutPerHostMillis, hosts) || canOpenRead(hosts);
         }

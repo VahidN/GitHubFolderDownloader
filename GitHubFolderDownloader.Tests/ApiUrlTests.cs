@@ -23,7 +23,7 @@ namespace GitHubFolderDownloader.Tests
             Assert.AreEqual("W3C_HTML5.1x", viewModel.GuiModelData.RepositoryName);
             Assert.AreEqual("About W3C and the Web", viewModel.GuiModelData.RepositorySubDir);
 
-            var actual = new ApiUrl(viewModel.GuiModelData).GetApiUrl(viewModel.GuiModelData.RepositorySubDir);
+            var actual = new ApiUrl(viewModel.GuiModelData).GetApiUrl(viewModel.GuiModelData.RepositorySubDir, branch: "");
             Assert.AreEqual("https://api.github.com/repos/EdxStudents/W3C_HTML5.1x/contents/About%20W3C%20and%20the%20Web", actual);
         }
 
@@ -43,7 +43,7 @@ namespace GitHubFolderDownloader.Tests
             Assert.AreEqual("KendoUI-Samples", viewModel.GuiModelData.RepositoryName);
             Assert.AreEqual("KendoUI02_MVC/Controllers", viewModel.GuiModelData.RepositorySubDir);
 
-            var actual = new ApiUrl(viewModel.GuiModelData).GetApiUrl(viewModel.GuiModelData.RepositorySubDir);
+            var actual = new ApiUrl(viewModel.GuiModelData).GetApiUrl(viewModel.GuiModelData.RepositorySubDir, branch: "");
             Assert.AreEqual("https://api.github.com/repos/VahidN/KendoUI-Samples/contents/KendoUI02_MVC/Controllers", actual);
         }
     }
