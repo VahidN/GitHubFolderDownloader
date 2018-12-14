@@ -9,6 +9,13 @@ namespace GitHubFolderDownloader.Toolkit
     {
         public static readonly string UA = "GitHubFolderDownloader";
 
+        static Downloader()
+        {
+            // Add SecurityProtocolType.Tls12
+            // https://stackoverflow.com/questions/33761919/tls-1-2-in-net-framework-4-0/39725273#39725273
+            ServicePointManager.SecurityProtocol |= (SecurityProtocolType)3072;
+        }
+
         public static void DownloadFile(
             string url,
             string outFolder,
